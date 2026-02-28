@@ -9,6 +9,7 @@ class Reserva(models.Model):
         ('F', 'Finalizada'),
     ]
 
+    # chave estrangeira para o cliente e o quarto. para fazer essa terceira tabela no BD
     usuario = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     quarto = models.ForeignKey(Quarto, on_delete=models.CASCADE)
     data_check_in = models.DateField()
@@ -17,5 +18,6 @@ class Reserva(models.Model):
     status = models.CharField(max_length=20, choices=STATUS_RESERVA, default='Pendente')
     data_reserva = models.DateTimeField(auto_now_add=True)
 
+    # para mostrar as informações da reserva no admin, ao invés do id
     def __str__(self):
         return f'Reserva de {self.usuario.nome} para o quarto {self.quarto.numero} - Status: {self.get_status_display()}'

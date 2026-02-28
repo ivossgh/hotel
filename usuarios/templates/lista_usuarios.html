@@ -8,6 +8,7 @@
 <body>
     <h1>Lista de Usuários</h1>
     <ul>
+        <!-- Olha o contexto aqui, que criamos la na views.py -->
         {% for usuario in usuarios %}
             <li>{{ usuario.nome }}</li>
         {% endfor %}

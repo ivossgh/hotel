@@ -12,6 +12,7 @@ class Quarto(models.Model):
     preco = models.DecimalField(max_digits=8, decimal_places=2)
     disponivel = models.BooleanField(default=True)
     descricao = models.TextField()
+    # QUando cadastrar um quarto a imagem la vai ser salva na nossa pasta media
     imagem = models.ImageField(upload_to='media/', null=True, blank=True)
 
     def __str__(self):
