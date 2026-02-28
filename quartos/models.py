@@ -12,7 +12,7 @@ class Quarto(models.Model):
     preco = models.DecimalField(max_digits=8, decimal_places=2)
     disponivel = models.BooleanField(default=True)
     descricao = models.TextField()
-    imagem = models.ImageField(upload_to='quartos/', null=True, blank=True)
+    imagem = models.ImageField(upload_to='media/', null=True, blank=True)
 
     def __str__(self):
         return f'Quarto {self.numero} - {self.get_tipo_display()}'
