@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Quartos</title>
+    <style>
+        .quarto-card { border: 1px solid #ddd; padding: 15px; margin-bottom: 10px; list-style: none; border-radius: 8px; }
+        .disponivel { color: green; font-weight: bold; }
+        .indisponivel { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Nossos Quartos</h1>
+    <ul>
+        {% for quarto in quartos %}
+            <li class="quarto-card">
+                <h2>Quarto nº {{ quarto.numero }}</h2>
+                
+                {% if quarto.imagem %}
+                    <img src="{{ quarto.imagem.url }}" alt="Foto do Quarto {{ quarto.numero }}" width="300">
+                {% else %}
+                    <div style="width:300px; height:150px; background:#eee; display:flex; align-items:center; justify-content:center;">
+                        Sem imagem disponível
+                    </div>
+                {% endif %}
+
+                <p><strong>Tipo:</strong> {{ quarto.get_tipo_display }}</p>
+                <p><strong>Descrição:</strong> {{ quarto.descricao }}</p>
+                <p><strong>Preço:</strong> R$ {{ quarto.preco }}</p>
+                
+                <p><strong>Status:</strong> 
+                    {% if quarto.disponivel %}
+                        <span class="disponivel">Disponível</span>
+                    {% else %}
+                        <span class="indisponivel">Ocupado</span>
+                    {% endif %}
+                </p>
+            </li>
+        {% empty %}
+            <li>Nenhum quarto cadastrado no momento.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
